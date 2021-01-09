@@ -16,17 +16,15 @@ type AppConfig struct {
   MaxReconnectAttempts  int     `env:"MAX_RECONNECT_ATTEMPTS"`
 }
 
-func main() {
-  var config AppConfig
+var config AppConfig
 
-  err := ezconfig.Parse(&config)
-  if err != nil {
-    panic(fmt.Errorf("fail read config: %s", err.Error()))
-  }
-
-  fmt.Printf("DatabaseURL: %s\n", config.DatabaseURL)
-  fmt.Printf("MaxReconnectAttempts: %d\n", config.MaxReconnectAttempts)
+err := ezconfig.Parse(&config)
+if err != nil {
+  panic(fmt.Errorf("fail read config: %s", err.Error()))
 }
+
+fmt.Printf("DatabaseURL: %s\n", config.DatabaseURL)
+fmt.Printf("MaxReconnectAttempts: %d\n", config.MaxReconnectAttempts)
 */
 func Parse(v interface{}) error {
 	ptrv := reflect.ValueOf(v)
