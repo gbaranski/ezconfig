@@ -7,6 +7,27 @@ import (
 	"strconv"
 )
 
+// Parse parses struct passed by argument by reference
+//
+// Example
+/*
+type AppConfig struct {
+  DatabaseURL           string  `env:"DATABASE_URL"`
+  MaxReconnectAttempts  int     `env:"MAX_RECONNECT_ATTEMPTS"`
+}
+
+func main() {
+  var config AppConfig
+
+  err := ezconfig.Parse(&config)
+  if err != nil {
+    panic(fmt.Errorf("fail read config: %s", err.Error()))
+  }
+
+  fmt.Printf("DatabaseURL: %s\n", config.DatabaseURL)
+  fmt.Printf("MaxReconnectAttempts: %d\n", config.MaxReconnectAttempts)
+}
+*/
 func Parse(v interface{}) error {
   ptrv := reflect.ValueOf(v)
   if ptrv.Kind() != reflect.Ptr || ptrv.IsNil() {
